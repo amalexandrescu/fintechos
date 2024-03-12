@@ -1,23 +1,24 @@
 // PRICE CHECK
 
 const priceCheck = (products, productPrices, productSold, soldPrice) => {
-  const actualProductPrices = {};
+  const productsWithPrices = {};
 
   for (let i = 0; i < products.length; i++) {
     const productName = products[i];
     const productPrice = productPrices[i];
-    actualProductPrices[productName] = productPrice;
+    productsWithPrices[productName] = productPrice;
   }
 
   let wrongPrices = 0;
 
   for (let i = 0; i < productSold.length; i++) {
-    if (soldPrice[i] !== actualProductPrices[productSold[i]]) {
+    const productPrice = productsWithPrices[productSold[i]];
+    if (soldPrice[i] !== productPrice) {
       wrongPrices++;
     }
   }
 
-  console.log(actualProductPrices);
+  console.log(productsWithPrices);
   console.log("wrongPrices", wrongPrices);
   return wrongPrices;
 };
